@@ -22,7 +22,7 @@ import {
 import { nav, site } from "@/lib/site";
 
 const barLink =
-  "inline-flex h-12 items-center gap-1 px-4 text-[0.8rem] font-semibold tracking-[0.14em] text-white uppercase transition-colors hover:bg-white/10 focus-visible:bg-white/10 data-popup-open:bg-white/10";
+  "inline-flex h-12 items-center gap-1 px-4 text-[0.8rem] font-semibold tracking-[0.14em] text-white uppercase transition-colors hover:bg-white/10 focus:bg-white focus:text-navy-700 data-active:bg-white data-active:text-navy-700 data-open:bg-white data-open:text-navy-700 data-popup-open:bg-white data-popup-open:text-navy-700";
 
 export function SiteHeader() {
   return (
@@ -109,7 +109,7 @@ export function SiteHeader() {
                 item.children ? (
                   <NavigationMenuItem key={item.label}>
                     <NavigationMenuTrigger
-                      className={`${barLink} rounded-none bg-transparent hover:text-white`}
+                      className={`${barLink} rounded-none bg-transparent`}
                     >
                       {item.label}
                     </NavigationMenuTrigger>
@@ -149,7 +149,7 @@ export function SiteHeader() {
                   <NavigationMenuItem key={item.label}>
                     <NavigationMenuLink
                       render={<Link href={item.href} />}
-                      className={`${barLink} rounded-none hover:bg-white/10 hover:text-white`}
+                      className={`${barLink} rounded-none`}
                     >
                       {item.label}
                     </NavigationMenuLink>
