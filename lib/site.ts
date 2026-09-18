@@ -46,10 +46,6 @@ export const nav: NavItem[] = [
         description: "The prosecutors who serve with Rob",
       },
       {
-        label: "Commonwealth's Detective",
-        href: "/about/detective",
-      },
-      {
         label: "Victim's Advocate",
         href: "/about/victims-advocate",
         description: "Support for victims through every step",
@@ -81,50 +77,3 @@ export const nav: NavItem[] = [
   { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ];
-
-export type Post = {
-  slug: string;
-  date: string;
-  title: string;
-  excerpt: string;
-  categories: string[];
-};
-
-/** Most recent Commonwealth's Commentary / Press Room posts. */
-export const posts: Post[] = [
-  {
-    slug: "joshua-harmon-pleads-guilty-to-attempted-murder-attempted-arson-wanton-endangerment-assault",
-    date: "2024-08-20",
-    title:
-      "Joshua Harmon Pleads Guilty to Attempted Murder, Attempted Arson, Wanton Endangerment, & Assault",
-    excerpt:
-      "On January 7, 2024, Independence Police responded to a residence in the 10000 block of Canberra Drive after a frantic 911 call from a woman who reported being assaulted by Joshua Harmon.",
-    categories: ["Commonwealth's Commentary", "Press Room"],
-  },
-  {
-    slug: "accused-killer-of-scott-county-sheriffs-deputy-pleads-guilty-in-kenton-county-case",
-    date: "2024-04-15",
-    title:
-      "Accused Killer of Scott County Sheriff's Deputy Pleads Guilty in Kenton County Case",
-    excerpt:
-      "Steven Sheanshang pleaded guilty in Kenton Circuit Court to charges of 2nd Degree Burglary and 1st Degree Persistent Felony Offender. Commonwealth's Attorney Rob Sanders refused to make any plea offers.",
-    categories: ["Commonwealth's Commentary", "Press Room"],
-  },
-  {
-    slug: "jessie-ooten-sentenced-to-20-years-for-stealing-gun-escape-tampering-with-prison-monitor-criminal-mischief-persistent-felony-offender",
-    date: "2024-04-11",
-    title:
-      "Jessie Ooten Sentenced to 20 Years for Stealing Gun, Escape, Tampering With Prison Monitor, Criminal Mischief, & Persistent Felony Offender",
-    excerpt:
-      "On November 4, 2021, Mr. Ed Yung contacted police after he saw that Jesse Lee Ooten had broken into his home and stolen a firearm.",
-    categories: ["Press Room"],
-  },
-];
-
-export function formatDate(iso: string) {
-  return new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}

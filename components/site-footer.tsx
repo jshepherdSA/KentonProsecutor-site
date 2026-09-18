@@ -73,21 +73,6 @@ export function SiteFooter() {
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             <li>
-              <Link href="/privacy" className="hover:text-white">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/cookies" className="hover:text-white">
-                Cookie Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/accessibility" className="hover:text-white">
-                Accessibility
-              </Link>
-            </li>
-            <li>
               <Link href="/open-records-policy" className="hover:text-white">
                 Open Records
               </Link>

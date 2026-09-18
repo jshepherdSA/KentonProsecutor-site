@@ -2,19 +2,19 @@
 
 Status key: [x] done · [~] pending (builds after homepage approval) · [ ] manual
 
-_Status as of the homepage gate — 2026-09-18._
+_Status after building all content pages — 2026-09-18. Policy pages and the cookie banner were deferred at the client's request._
 
 ## Auto-built by the skill (verify these rendered)
 
-- [~] **Privacy Policy** — page at `/privacy`, linked in footer (footer link in place; page builds after approval)
-- [~] **Accessibility Statement** — page at `/accessibility`, linked in footer (footer link in place)
-- [~] **Cookie Policy** — page at `/cookies`, linked in footer (footer link in place)
-- [~] **Cookie consent banner** — functional: blocks GA/GTM until consent,
-      suppresses on decline, remembers choice; "Cookie settings" footer link
-- [~] **llms.txt** — at site root, lists key pages + policies
-- [~] **robots.txt** — exists AND allows AI crawlers (GPTBot, ClaudeBot,
-      PerplexityBot, Google-Extended) plus normal search crawlers
-- [~] **sitemap.xml** — generated, referenced in robots.txt
+- [~] **Privacy Policy** — page at `/privacy` — **deferred** (needs legal name, email, effective date)
+- [~] **Accessibility Statement** — page at `/accessibility` — **deferred**
+- [~] **Cookie Policy** — page at `/cookies` — **deferred**
+- [~] **Cookie consent banner** — **deferred**. No GA/GTM is installed yet, so
+      nothing currently sets tracking cookies. Build before adding analytics.
+- [x] **llms.txt** — `/llms.txt`, lists key pages (add policy links when built)
+- [x] **robots.txt** — `app/robots.ts`; allows all crawlers incl. GPTBot, ClaudeBot,
+      PerplexityBot, Google-Extended; references the sitemap
+- [x] **sitemap.xml** — `app/sitemap.ts`; all pages, staff bios, and 89 news posts
 
 ## Manual setup (human does these in Google — skill cannot)
 

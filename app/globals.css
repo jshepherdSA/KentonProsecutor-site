@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -129,5 +130,72 @@
   }
   .container-site {
     @apply mx-auto w-full max-w-7xl px-5 md:px-8;
+  }
+
+  /* Long-form content converted from the original site */
+  .prose-site {
+    @apply prose max-w-none prose-lg;
+    --tw-prose-body: var(--color-body);
+    --tw-prose-headings: var(--color-ink);
+    --tw-prose-links: var(--color-navy-700);
+    --tw-prose-bold: var(--color-ink);
+    --tw-prose-bullets: var(--color-steel-500);
+    --tw-prose-counters: var(--color-steel-500);
+    --tw-prose-quotes: var(--color-ink);
+    --tw-prose-quote-borders: var(--color-heritage-700);
+    --tw-prose-hr: var(--color-line);
+    --tw-prose-th-borders: var(--color-line);
+    --tw-prose-td-borders: var(--color-line);
+  }
+  .prose-site :where(h2, h3, h4) {
+    @apply scroll-mt-24 font-serif font-normal;
+  }
+  .prose-site :where(h2) {
+    @apply mt-14 text-[1.9rem] leading-tight;
+  }
+  .prose-site :where(h3) {
+    @apply mt-10 text-2xl;
+  }
+  .prose-site :where(h4) {
+    @apply font-sans text-base font-semibold tracking-wide text-navy-700;
+  }
+  .prose-site :where(a) {
+    @apply font-medium underline-offset-4 hover:text-navy-900;
+  }
+  .prose-site :where(img) {
+    @apply rounded-xl;
+  }
+  .prose-site :where(img:not(.float-left, .float-right)) {
+    @apply max-h-[28rem] w-auto max-w-full sm:max-w-md;
+  }
+  .prose-site :where(img.float-right, img.float-left) {
+    @apply my-2 w-full sm:w-[42%];
+  }
+  .prose-site :where(img.float-right) {
+    @apply sm:float-right sm:ml-8;
+  }
+  .prose-site :where(img.float-left) {
+    @apply sm:float-left sm:mr-8;
+  }
+  .prose-site :where(h2, h3) {
+    clear: both;
+  }
+  .prose-site .table-wrap {
+    @apply my-8 overflow-x-auto rounded-xl ring-1 ring-line;
+  }
+  .prose-site .table-wrap table {
+    @apply my-0 text-base;
+  }
+  .prose-site .table-wrap :where(td, th) {
+    @apply px-4 py-3 align-top;
+  }
+  .prose-site .table-wrap tr:first-child {
+    @apply bg-mist-50;
+  }
+  .prose-site .video {
+    @apply my-8 aspect-video overflow-hidden rounded-xl bg-navy-950;
+  }
+  .prose-site .video iframe {
+    @apply size-full;
   }
 }

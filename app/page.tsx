@@ -18,7 +18,8 @@ import {
 import { ArrowLink, SectionHeading } from "@/components/section";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { formatDate, posts, site } from "@/lib/site";
+import { formatDate, posts } from "@/lib/content";
+import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -125,7 +126,7 @@ const pillars = [
     title: "Leader",
     sub: "Improving justice statewide",
     body: "Past President of the Kentucky Commonwealth's Attorneys Association, appointed to the Kentucky Supreme Court's Criminal Rules Committee, and appointed by two governors to the Prosecutors' Advisory Council.",
-    href: "/about/rob-sanders#leadership",
+    href: "/about/rob-sanders#improving-the-criminal-justice-system-in-kentucky-and-u-s",
     cta: "Leadership",
   },
 ];
@@ -334,7 +335,7 @@ const services = [
     icon: BookOpenIcon,
     title: "Education & outreach",
     body: "Schools, churches, neighborhood associations, scout groups, and clubs can request a free presentation on our work and the criminal justice system.",
-    href: "/services#outreach",
+    href: "/services#education-and-community-outreach",
   },
 ];
 
@@ -552,7 +553,7 @@ function LatestNews() {
         </div>
 
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
-          {posts.map((post) => (
+          {posts.slice(0, 3).map((post) => (
             <li key={post.slug}>
               <Card className="relative h-full gap-0 border-t-[3px] border-navy-700 p-7 ring-line">
                 <p className="text-xs font-semibold tracking-[0.14em] text-steel-500 uppercase">
