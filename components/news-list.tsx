@@ -51,7 +51,7 @@ export function NewsList({
               setShown(PAGE_SIZE);
             }}
             className={cn(
-              "rounded-full px-4 py-2 text-sm font-semibold ring-1 transition-colors",
+              "rounded-sm px-4 py-2 text-sm font-semibold ring-1 transition-colors",
               active === c
                 ? "bg-navy-700 text-white ring-navy-700"
                 : "text-navy-700 ring-line hover:bg-ice-100",
@@ -101,7 +101,7 @@ export function NewsList({
           <button
             type="button"
             onClick={() => setShown((n) => n + PAGE_SIZE)}
-            className="inline-flex h-12 items-center rounded-full px-6 text-[0.8rem] font-semibold tracking-[0.12em] text-navy-700 uppercase ring-[1.5px] ring-navy-700 hover:bg-ice-100"
+            className="inline-flex h-12 items-center rounded-sm px-6 text-[0.8rem] font-semibold tracking-[0.12em] text-navy-700 uppercase ring-[1.5px] ring-navy-700 hover:bg-ice-100"
           >
             Load more
           </button>

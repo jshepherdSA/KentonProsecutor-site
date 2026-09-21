@@ -175,7 +175,7 @@ function MobileMenu() {
   return (
     <Sheet>
       <SheetTrigger
-        className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-line text-navy-700 lg:hidden"
+        className="ml-auto inline-flex size-11 items-center justify-center rounded-sm border border-line text-navy-700 lg:hidden"
         aria-label="Open menu"
       >
         <MenuIcon className="size-5" aria-hidden="true" />
@@ -218,7 +218,7 @@ function MobileMenu() {
           </ul>
           <a
             href={site.phoneHref}
-            className="mt-4 flex items-center gap-2 rounded-full bg-navy-700 px-5 py-3 font-semibold text-white"
+            className="mt-4 flex items-center gap-2 rounded-sm bg-navy-700 px-5 py-3 font-semibold text-white"
           >
             <PhoneIcon className="size-4" aria-hidden="true" />
             Call {site.phone}

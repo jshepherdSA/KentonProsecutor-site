@@ -60,7 +60,7 @@ export function PageHero({
               alt={image.alt}
               width={240}
               height={240}
-              className="mb-6 size-24 rounded-full object-cover object-top ring-4 ring-white/15 lg:hidden"
+              className="mb-6 h-28 w-24 rounded-sm object-cover object-top ring-4 ring-white/15 lg:hidden"
             />
           )}
           <Breadcrumb>

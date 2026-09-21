@@ -28,7 +28,7 @@ export default function NewsletterIssuesPage() {
       >
         <a
           href={site.newsletterUrl}
-          className="mt-7 inline-flex h-12 items-center rounded-full bg-white px-6 text-[0.8rem] font-semibold tracking-[0.12em] text-navy-900 uppercase hover:bg-ice-100"
+          className="mt-7 inline-flex h-12 items-center rounded-sm bg-white px-6 text-[0.8rem] font-semibold tracking-[0.12em] text-navy-900 uppercase hover:bg-ice-100"
         >
           Sign up for the newsletter
         </a>

@@ -88,7 +88,7 @@
   --chart-3: #9ec3de;
   --chart-4: #284052;
   --chart-5: #0b2a45;
-  --radius: 0.75rem;
+  --radius: 0.1875rem;
   --sidebar: #f4f7fa;
   --sidebar-foreground: #13212e;
   --sidebar-primary: #004375;
@@ -163,7 +163,7 @@
     @apply font-medium underline-offset-4 hover:text-navy-900;
   }
   .prose-site :where(img) {
-    @apply rounded-xl;
+    @apply rounded-sm;
   }
   .prose-site :where(img:not(.float-left, .float-right)) {
     @apply max-h-[28rem] w-auto max-w-full sm:max-w-md;
@@ -181,7 +181,7 @@
     clear: both;
   }
   .prose-site .table-wrap {
-    @apply my-8 overflow-x-auto rounded-xl ring-1 ring-line;
+    @apply my-8 overflow-x-auto rounded-sm ring-1 ring-line;
   }
   .prose-site .table-wrap table {
     @apply my-0 text-base;
@@ -193,7 +193,7 @@
     @apply bg-mist-50;
   }
   .prose-site .video {
-    @apply my-8 aspect-video overflow-hidden rounded-xl bg-navy-950;
+    @apply my-8 aspect-video overflow-hidden rounded-sm bg-navy-950;
   }
   .prose-site .video iframe {
     @apply size-full;

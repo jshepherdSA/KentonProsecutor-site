@@ -52,15 +52,16 @@ Contrast: body `#34465A` on white 9.6:1; `#004375` on white 10.4:1; `sky-300` on
 - 12-col grid mental model; common splits 7/5 and 6/6.
 
 ## Components
-- **Buttons** (shadcn `Button`, restyled): radius `rounded-full` (pill, Helton/911 feel),
-  h-12 px-6, sans 600 14px, uppercase tracking-wide.
+- **Buttons** (shadcn `Button`, restyled): squared rectangles (`rounded-sm`, ~3px),
+  h-12 px-6, sans 600 14px, uppercase tracking-wide. Deliberately *not* pills —
+  the office should read as civic and institutional, not consumer-brand.
   - primary: `navy-700` bg, white text → hover `navy-900`
   - secondary/outline: 1.5px `navy-700` border, `navy-700` text → hover `ice-100` bg
   - on-dark: white bg, `navy-900` text; outline-on-dark: white/40 border
   - arrow link: text + `→` in a 36px circular outline (Helton pillar arrows)
   - focus: 3px `sky-300` ring, offset 2
-- **Cards:** white, 1px `border` color, `rounded-xl`, no heavy shadows; hover lifts
-  border to `steel-500`. Optional 3px top rule in `navy-700`.
+- **Cards:** white, 1px `border` color, barely-rounded corners, no heavy shadows;
+  hover lifts border to `steel-500`. Optional 3px top rule in `navy-700`.
 - **Nav:** (see teardown) utility strip → identity row (seal + name) → slate nav bar
   with dropdowns → 3px heritage rule.
 - **Footer:** `navy-950`, seal, contact block, link columns, legal row.
@@ -69,9 +70,11 @@ Contrast: body `#34465A` on white 9.6:1; `#004375` on white 10.4:1; `sky-300` on
 ## Imagery
 - Real photography of Rob in the community (classroom, testimony, courtroom,
   family history photos). Never mugshots on the homepage.
-- Photos get `rounded-xl` and, where used as backgrounds, a navy gradient overlay
+- Photos get near-square corners and, where used as backgrounds, a navy gradient overlay
   (`from-navy-900/90 via-navy-900/60 to-transparent`).
 - Historic family photos stay black-and-white.
 - Icons: lucide, 1.5 stroke, `steel-500`.
-- Radius: 12px cards/photos, full pill buttons. Shadow: only `shadow-sm` on
-  floating elements (dropdowns, portrait card).
+- **Radius: 3px** (`--radius: 0.1875rem`), applied through the Tailwind radius
+  scale, so cards, photos, panels and buttons are all near-square. Circles are
+  reserved for things that are genuinely round: the office seal, icon badges and
+  the circular arrow links. Shadow: only `shadow-sm` on floating elements.
