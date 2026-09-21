@@ -18,6 +18,8 @@ export type Post = {
   excerpt: string;
   categories: string[];
   image: string | null;
+  imageWidth?: number;
+  imageHeight?: number;
   html: string;
 };
 

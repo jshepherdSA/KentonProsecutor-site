@@ -54,9 +54,10 @@ export default async function PostPage({ params }: PageProps<"/news/[slug]">) {
             <Image
               src={post.image}
               alt=""
-              width={800}
-              height={600}
-              className="mb-8 h-auto max-h-[28rem] w-auto max-w-full rounded-xl"
+              width={post.imageWidth ?? 800}
+              height={post.imageHeight ?? 600}
+              priority
+              className="mb-8 h-auto max-h-[26rem] w-auto max-w-full rounded-md"
             />
           )}
           <Prose html={post.html} />
