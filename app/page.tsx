@@ -215,22 +215,14 @@ function WelcomeLetter() {
     <section aria-labelledby="welcome-heading" className="bg-white">
       <div className="container-site grid items-start gap-14 py-20 md:py-28 lg:grid-cols-12">
         <figure className="lg:sticky lg:top-8 lg:col-span-5">
-          <div className="relative overflow-hidden rounded-xl bg-gradient-to-b from-ice-100 to-sky-300/60">
-            <Image
-              src="/images/kenton-seal.png"
-              alt=""
-              width={600}
-              height={600}
-              className="absolute -top-16 -right-16 size-72 opacity-[0.07]"
-            />
-            <Image
-              src="/images/rob-sanders.png"
-              alt="Portrait of Commonwealth's Attorney Rob Sanders"
-              width={309}
-              height={374}
-              className="relative mx-auto mt-10 h-auto w-[72%]"
-            />
-          </div>
+          <Image
+            src="/images/rob-sanders-podium.jpg"
+            alt="Commonwealth's Attorney Rob Sanders speaking at a press conference"
+            width={660}
+            height={440}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="aspect-[4/3] w-full rounded-xl object-cover object-[60%_20%]"
+          />
           <figcaption className="mt-4 flex flex-col gap-1 border-b sm:flex-row sm:items-baseline sm:justify-between sm:gap-4 border-line pb-4">
             <span className="font-serif text-xl text-ink">Rob Sanders</span>
             <span className="text-sm text-subtle">
