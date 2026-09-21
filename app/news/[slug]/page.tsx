@@ -4,7 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PageHero, Prose, SectionLayout } from "@/components/page";
-import { formatDate, getPost, posts } from "@/lib/content";
+import { cn } from "@/lib/utils";
+import { bulletizeCharges, formatDate, getPost, posts } from "@/lib/content";
 
 export const dynamicParams = false;
 
@@ -34,6 +35,8 @@ export default async function PostPage({ params }: PageProps<"/news/[slug]">) {
   const newer = posts[i - 1];
   const older = posts[i + 1];
   const showFeatured = post.image && !post.html.includes("<img");
+  // Two-defendant mugshots are wide; give them more room than a single portrait.
+  const wideImage = (post.imageWidth ?? 0) > (post.imageHeight ?? 1);
 
   return (
     <>
@@ -57,10 +60,15 @@ export default async function PostPage({ params }: PageProps<"/news/[slug]">) {
               width={post.imageWidth ?? 800}
               height={post.imageHeight ?? 600}
               priority
-              className="mb-8 h-auto max-h-[26rem] w-auto max-w-full rounded-md"
+              // Floated so the release text wraps around it, as on the original site.
+              className={cn(
+                "mr-6 mb-4 h-auto rounded-sm sm:float-left",
+                wideImage ? "w-full sm:w-80" : "w-40 sm:w-56",
+              )}
             />
           )}
-          <Prose html={post.html} />
+          <Prose html={bulletizeCharges(post.html)} />
+          <div className="clear-both" />
         </article>
 
         <nav

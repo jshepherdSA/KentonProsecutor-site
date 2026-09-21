@@ -58,6 +58,86 @@ export function prepareHtml(html: string, opts: { strip?: RegExp[] } = {}) {
   return out;
 }
 
+const NUM =
+  "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty";
+const COUNT_ITEM = new RegExp(`^(?:\\d+|${NUM})\\s+counts?\\s+of\\b`, "i");
+const AND_SPLIT = new RegExp(
+  `\\s+and\\s+(?=(?:\\d+|${NUM})\\s+counts?\\s+of\\b)`,
+  "i",
+);
+const CHARGE_LEAD =
+  /\b(?:convicted of|guilty of|guilty to|pleaded guilty to|pled guilty to|plead guilty to|charged with|indicted (?:him |her )?(?:for|on|of)|indicted for|indicted on|tried and convicted of)\s+/i;
+
+const isCharge = (s: string) =>
+  COUNT_ITEM.test(s) || /^[A-Z0-9\u201c"(]/.test(s);
+
+/** Split a run of comma-separated charges, keeping any trailing clause aside. */
+function chargeItems(listPart: string) {
+  const items = listPart
+    .split(/,\s*/)
+    .flatMap((s) => s.split(AND_SPLIT))
+    .map((s) =>
+      s
+        .replace(/^and\s+/i, "")
+        .replace(/[.;]\s*$/, "")
+        .trim(),
+    )
+    .filter(Boolean);
+  if (items.length < 3) return null;
+  let trailer: string | null = null;
+  if (!isCharge(items[items.length - 1])) trailer = items.pop() ?? null;
+  if (items.length < 3 || !items.every(isCharge)) return null;
+  if (items.filter((s) => COUNT_ITEM.test(s)).length < 2) return null;
+  if (items.some((s) => s.length > 200)) return null;
+  return { items, trailer };
+}
+
+/**
+ * Press releases list charges inline ("convicted of A, B, and C"). Turn those
+ * runs into a colon plus bullets so they can actually be read. Conservative on
+ * purpose: only fires on 3+ items where at least two are "N counts of ...".
+ */
+export function bulletizeCharges(html: string) {
+  return html.replace(/<p>([\s\S]*?)<\/p>/g, (full, inner: string) => {
+    if (/<(ul|ol|img|iframe)/.test(inner)) return full;
+    const sentences = inner.split(/(?<=[.!?])\s+(?=[A-Z\u201c"(])/);
+    for (let i = 0; i < sentences.length; i++) {
+      const sentence = sentences[i];
+      let lead: string | null = null;
+      let listPart: string | null = null;
+      const colon = sentence.lastIndexOf(":");
+      if (colon > 20) {
+        lead = sentence.slice(0, colon);
+        listPart = sentence.slice(colon + 1);
+      } else {
+        const m = CHARGE_LEAD.exec(sentence);
+        if (m) {
+          lead = sentence.slice(0, m.index + m[0].length).trimEnd();
+          listPart = sentence.slice(m.index + m[0].length);
+        }
+      }
+      if (!lead || !listPart) continue;
+      const parsed = chargeItems(listPart);
+      if (!parsed) continue;
+      const before = sentences.slice(0, i).join(" ").trim();
+      const after = sentences
+        .slice(i + 1)
+        .join(" ")
+        .trim();
+      const leadText = `${before ? before + " " : ""}${lead.replace(/[:\s]+$/, "")}:`;
+      const tail = [parsed.trailer?.replace(/^\W+/, "") ?? "", after]
+        .filter(Boolean)
+        .join(" ")
+        .trim();
+      return (
+        `<p>${leadText}</p><ul>${parsed.items.map((x) => `<li>${x}</li>`).join("")}</ul>` +
+        (tail ? `<p>${tail.charAt(0).toUpperCase()}${tail.slice(1)}</p>` : "")
+      );
+    }
+    return full;
+  });
+}
+
 export function headings(html: string) {
   return [...html.matchAll(/<h2>([\s\S]*?)<\/h2>/g)].map((m) => ({
     id: slugify(m[1]),

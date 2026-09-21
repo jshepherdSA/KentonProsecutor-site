@@ -5,11 +5,23 @@ MONTHS='January February March April May June July August September October Nove
 SEAL='6721d687-0107-475c-896c-96e10de0680e'
 os.makedirs(f'{APP}/public/images/press', exist_ok=True)
 
+BLOCK = r'p|div|td|tr|table|h[1-6]|li|ul|ol|br'
+
+
 def lines_of(s):
-    s=re.sub(r'<(script|style)[^>]*>.*?</\1>','',s,flags=re.S)
-    s=re.sub(r'<br\s*/?>','\n',s)
-    t=html.unescape(re.sub(r'<[^>]+>','\n',s)).replace('​','').replace('﻿','')
-    return [re.sub(r'\s+',' ',l).strip() for l in t.split('\n') if l.strip()]
+    """Text blocks. Block tags end a line; inline tags (e.g. the <sup> in
+    "2<sup>nd</sup> Degree") are dropped so sentences stay intact."""
+    s = re.sub(r'<(script|style)[^>]*>.*?</\1>', '', s, flags=re.S)
+    s = re.sub(rf'</?(?:{BLOCK})\b[^>]*>', '\n', s)
+    s = re.sub(r'<[^>]+>', '', s)
+    s = html.unescape(s).replace('\u200b', '').replace('\ufeff', '')
+    out = []
+    for l in s.split('\n'):
+        l = re.sub(r'\s+', ' ', l).strip()
+        if l:
+            out.append(l)
+    return out
+
 
 DROP=re.compile(r"^(FOR IMMEDIATE RELEASE|\*+ ?FOR IMMEDIATE RELEASE ?\*+|Unsubscribe|Update Profile|Constant Contact Data Notice|Commonwealth's Attorney Office|1840 Simon Kenton|Suite 2300|Covington, KY 41011|Sent by|Try email marketing|This email was sent|Privacy Policy|US|\|)$", re.I)
 
