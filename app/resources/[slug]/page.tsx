@@ -124,7 +124,13 @@ function Body({ slug, html }: { slug: string; html: string }) {
     case "law-enforcement":
       return (
         <>
-          <Prose html={html} strip={[/<table>[\s\S]*<\/table>/]} />
+          <Prose
+            html={html}
+            strip={[
+              /<table>[\s\S]*<\/table>/,
+              /<p><img src="\/images\/wp\/rob-trial\.jpg"[^>]*><\/p>/,
+            ]}
+          />
           <DownloadsTable html={html} />
         </>
       );
