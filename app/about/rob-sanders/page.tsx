@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { PageHero, Prose, SectionLayout } from "@/components/page";
@@ -46,6 +47,18 @@ export default function RobSandersPage() {
     .reduce((acc, part, i) =>
       i === 0 ? part : `${acc}<img class="${sides[(i - 1) % 2]}"${part}`,
     );
+  // the video introduces Rob, so play it before the story starts
+  const video = /<div class="video">[\s\S]*?<\/div>/.exec(html)?.[0];
+  if (video) {
+    html = html
+      .replace(`<p>${video}</p>`, "")
+      .replace(video, "")
+      .replace(
+        "<h2>Growing Up in the World of Law Enforcement</h2>",
+        `${video}<h2>Growing Up in the World of Law Enforcement</h2>`,
+      );
+  }
+
   const toc = headings(html);
 
   return (
@@ -59,6 +72,15 @@ export default function RobSandersPage() {
           src: "/images/wp/0324-0988e-2.jpg",
           alt: "Portrait of Commonwealth’s Attorney Rob Sanders",
         }}
+        imageOverlay={
+          <Image
+            src="/images/rob-signature-white.png"
+            alt=""
+            width={300}
+            height={69}
+            className="absolute -bottom-4 left-1/2 w-44 drop-shadow-[0_2px_6px_rgba(7,27,46,0.6)]"
+          />
+        }
       />
       <SectionLayout
         section="About"

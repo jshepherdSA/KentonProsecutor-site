@@ -29,6 +29,7 @@ export function PageHero({
   lead,
   crumbs = [],
   image,
+  imageOverlay,
   backdrop,
   children,
 }: {
@@ -37,6 +38,7 @@ export function PageHero({
   lead?: React.ReactNode;
   crumbs?: Crumb[];
   image?: { src: string; alt: string; aspect?: string };
+  imageOverlay?: React.ReactNode;
   backdrop?: { src: string; alt: string; caption?: string };
   children?: React.ReactNode;
 }) {
@@ -132,15 +134,19 @@ export function PageHero({
           )}
         </div>
         {image && (
-          <div className="hidden lg:col-span-4 lg:block">
+          <div className="relative hidden lg:col-span-4 lg:block">
             <Image
               src={image.src}
               alt={image.alt}
               width={600}
               height={800}
               priority
-              className="ml-auto aspect-[4/5] w-full max-w-xs rounded-xl object-cover object-top ring-4 ring-white/10"
+              className={cn(
+                "ml-auto w-full max-w-xs rounded-sm object-cover object-top ring-4 ring-white/10",
+                image.aspect ?? "aspect-[4/5]",
+              )}
             />
+            {imageOverlay}
           </div>
         )}
       </div>
