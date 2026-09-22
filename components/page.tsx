@@ -31,6 +31,7 @@ export function PageHero({
   image,
   imageOverlay,
   backdrop,
+  split,
   children,
 }: {
   eyebrow?: string;
@@ -39,11 +40,25 @@ export function PageHero({
   crumbs?: Crumb[];
   image?: { src: string; alt: string; aspect?: string };
   imageOverlay?: React.ReactNode;
+  split?: { src: string; alt: string };
   backdrop?: { src: string; alt: string; caption?: string };
   children?: React.ReactNode;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-navy-900 text-white">
+      {split && (
+        <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden lg:w-[46%]">
+          <Image
+            src={split.src}
+            alt={split.alt}
+            fill
+            priority
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-navy-900/75 lg:bg-transparent lg:bg-gradient-to-r lg:from-navy-900 lg:via-navy-900/20 lg:to-transparent" />
+        </div>
+      )}
       {backdrop ? (
         <>
           <Image
@@ -52,7 +67,7 @@ export function PageHero({
             fill
             priority
             sizes="100vw"
-            className="-z-20 object-cover object-center"
+            className="-z-20 object-cover object-[center_68%]"
           />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900 via-navy-900/85 to-navy-900/60" />
         </>
@@ -69,9 +84,10 @@ export function PageHero({
         className={cn(
           "container-site py-12 md:py-16",
           image && "grid items-end gap-10 lg:grid-cols-12",
+          split && "lg:py-14",
         )}
       >
-        <div className={cn(image && "lg:col-span-8")}>
+        <div className={cn(image && "lg:col-span-8", split && "max-w-xl")}>
           {image && (
             <Image
               src={image.src}

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 import { PageHero, Prose, SectionLayout } from "@/components/page";
 import { getPage, headings } from "@/lib/content";
@@ -24,6 +23,10 @@ export default function ServicesPage() {
         }
         lead="The services we provide and the duties we are legally required to carry out under state law."
         crumbs={[{ label: "Services" }]}
+        split={{
+          src: "/images/rob-sanders-podium.jpg",
+          alt: "Commonwealth’s Attorney Rob Sanders speaking at a press conference",
+        }}
       />
       <SectionLayout
         section="About"
@@ -46,14 +49,6 @@ export default function ServicesPage() {
           </div>
         }
       >
-        <Image
-          src="/images/rob-sanders-podium.jpg"
-          alt="Commonwealth’s Attorney Rob Sanders speaking at a press conference"
-          width={660}
-          height={440}
-          priority
-          className="mb-10 w-full rounded-sm"
-        />
         <Prose html={html} />
       </SectionLayout>
     </>
