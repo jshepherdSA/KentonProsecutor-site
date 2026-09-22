@@ -46,6 +46,21 @@ export function slugify(text: string) {
 }
 
 /** Heading anchors, responsive tables, and optional removals for rendered HTML. */
+/**
+ * The original pages put a standalone <img> straight before a short paragraph
+ * that is really its caption. Pair them up as figure/figcaption so captions
+ * stop reading as body copy.
+ */
+function figurizeImages(html: string) {
+  return html.replace(
+    /(?<!<p>)<img([^>]*)>\s*<p>([\s\S]{0,240}?)<\/p>/g,
+    (full, attrs: string, caption: string) =>
+      /class="[^"]*float/.test(attrs)
+        ? full
+        : `<figure><img${attrs}><figcaption>${caption}</figcaption></figure>`,
+  );
+}
+
 export function prepareHtml(html: string, opts: { strip?: RegExp[] } = {}) {
   let out = html;
   for (const re of opts.strip ?? []) out = out.replace(re, "");
@@ -53,6 +68,7 @@ export function prepareHtml(html: string, opts: { strip?: RegExp[] } = {}) {
     /<(h2|h3)>([\s\S]*?)<\/\1>/g,
     (_, tag, inner) => `<${tag} id="${slugify(inner)}">${inner}</${tag}>`,
   );
+  out = figurizeImages(out);
   out = out.replace(/<table>/g, '<div class="table-wrap"><table>');
   out = out.replace(/<\/table>/g, "</table></div>");
   return out;

@@ -27,7 +27,18 @@ export default function RobSandersPage() {
     .html.replace(/^<h2>[\s\S]*?<\/h2>/, "")
     .replace(/<h4><strong>([\s\S]*?)<\/strong><\/h4>/g, "<h2>$1</h2>")
     .replace(/<h3>Visit the[\s\S]*?<\/h3>/, "")
-    .replace(/<img src="\/images\/wp\/0324-0988e-2\.jpg"[^>]*>/, "");
+    .replace(/<img src="\/images\/wp\/0324-0988e-2\.jpg"[^>]*>/, "")
+    // the 2016 courtroom photo carries the text better a little larger
+    .replace(
+      /(<img src="\/images\/wp\/B9323387126Z[^"]*"[^>]*class=")([^"]*)(")/,
+      "$1$2 wide$3",
+    )
+    // lead the statewide-leadership section with Rob in the courtroom
+    .replace(
+      "<h2>Improving the Criminal Justice System in Kentucky and U.S.</h2>",
+      '<figure><img src="/images/rob-in-court.jpg" alt="Rob Sanders holding a handgun as he addresses the courtroom during a trial" width="742" height="475" class="full"><figcaption>Rob Sanders presenting evidence to the jury in Kenton Circuit Court.</figcaption></figure>' +
+        "<h2>Improving the Criminal Justice System in Kentucky and U.S.</h2>",
+    );
   const toc = headings(html);
 
   return (

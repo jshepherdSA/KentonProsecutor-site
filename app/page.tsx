@@ -49,14 +49,14 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-navy-900">
-      <div className="absolute inset-y-0 right-0 -z-10 w-full lg:w-[58%]">
+      <div className="absolute inset-y-0 right-0 -z-10 w-full overflow-hidden lg:w-[58%]">
         <Image
           src="/images/beechwood-classroom.jpg"
           alt="Rob Sanders speaking to a classroom of students at Beechwood Elementary School"
           fill
           priority
           sizes="(min-width: 1024px) 58vw, 100vw"
-          className="object-cover object-[55%_center]"
+          className="scale-115 object-cover object-[55%_center]"
         />
         <div className="absolute inset-0 bg-navy-900/75 lg:bg-transparent lg:bg-gradient-to-r lg:from-navy-900 lg:via-navy-900/20 lg:to-transparent" />
       </div>

@@ -66,7 +66,7 @@ export default function AboutPage() {
                 href={c.href}
                 className="group block overflow-hidden rounded-xl ring-1 ring-line transition hover:ring-steel-500"
               >
-                <div className="relative aspect-[16/10] bg-mist-50">
+                <div className="relative aspect-[5/4] bg-mist-50">
                   <Image
                     src={c.img}
                     alt={c.alt}
