@@ -203,6 +203,7 @@ export const staff: StaffMember[] = [
     name: "Emily J. Arnzen",
     title: "Assistant Commonwealth’s Attorney",
     email: "earnzen@prosecutors.ky.gov",
+    photo: "/images/staff/emily-arnzen.jpg",
   },
   {
     slug: "hunter-eickhoff",
