@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MailIcon, MapPinIcon, PhoneIcon, PrinterIcon } from "lucide-react";
 
 import { PageHero } from "@/components/page";
-import { getPage } from "@/lib/content";
+import { directory } from "@/lib/content";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -16,20 +16,6 @@ const mapsUrl =
   "https://www.google.com/maps/search/?api=1&query=1840+Simon+Kenton+Way+Covington+KY+41011";
 
 export default function ContactPage() {
-  const html = getPage("contact").html;
-  const directory = [
-    ...html.matchAll(
-      /<tr>\s*<td><strong>\s*([^<]+)<\/strong><\/td>\s*<td>([^<]+)<\/td>\s*<td><a href="mailto:([^"]+)">/g,
-    ),
-  ].map((m) => {
-    const [last, first] = m[1].split(",").map((s) => s.trim());
-    return {
-      name: `${first} ${last}`,
-      title: m[2].replace(/&#8217;/g, "’").trim(),
-      email: m[3],
-    };
-  });
-
   return (
     <>
       <PageHero

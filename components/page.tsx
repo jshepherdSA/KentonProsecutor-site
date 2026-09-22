@@ -29,24 +29,40 @@ export function PageHero({
   lead,
   crumbs = [],
   image,
+  backdrop,
   children,
 }: {
   eyebrow?: string;
   title: React.ReactNode;
   lead?: React.ReactNode;
   crumbs?: Crumb[];
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; aspect?: string };
+  backdrop?: { src: string; alt: string; caption?: string };
   children?: React.ReactNode;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-navy-900 text-white">
-      <Image
-        src="/images/kenton-seal.png"
-        alt=""
-        width={600}
-        height={600}
-        className="absolute -top-24 -right-24 -z-10 size-[26rem] opacity-[0.06]"
-      />
+      {backdrop ? (
+        <>
+          <Image
+            src={backdrop.src}
+            alt={backdrop.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="-z-20 object-cover object-center"
+          />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-900 via-navy-900/85 to-navy-900/60" />
+        </>
+      ) : (
+        <Image
+          src="/images/kenton-seal.png"
+          alt=""
+          width={600}
+          height={600}
+          className="absolute -top-24 -right-24 -z-10 size-[26rem] opacity-[0.06]"
+        />
+      )}
       <div
         className={cn(
           "container-site py-12 md:py-16",
@@ -109,6 +125,11 @@ export function PageHero({
             </p>
           )}
           {children}
+          {backdrop?.caption && (
+            <p className="mt-8 max-w-xl text-xs text-white/60">
+              {backdrop.caption}
+            </p>
+          )}
         </div>
         {image && (
           <div className="hidden lg:col-span-4 lg:block">

@@ -107,6 +107,16 @@ export default async function ResourceDetailPage({
           { label: "Resources", href: "/resources" },
           { label: r.title },
         ]}
+        backdrop={
+          slug === "law-enforcement"
+            ? {
+                src: "/images/law-enforcement-k9.jpg",
+                alt: "Rob Sanders with K-9 officers from Northern Kentucky law enforcement agencies at the Northern Kentucky Police Memorial",
+                caption:
+                  "With K-9 officers from across Northern Kentucky at the police memorial on the Covington riverfront.",
+              }
+            : undefined
+        }
       />
       <SectionLayout section="Resources" current={`/resources/${slug}`}>
         <Body slug={slug} html={html} />

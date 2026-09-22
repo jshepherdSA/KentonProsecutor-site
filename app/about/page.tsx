@@ -29,16 +29,16 @@ const cards = [
   {
     title: "Assistant Commonwealth’s Attorneys",
     href: "/about/staff",
-    img: "/images/staff-group.jpg",
+    img: "/images/staff/staff-group.jpg",
     alt: "Rob Sanders with the Assistant Commonwealth’s Attorneys",
     fit: "object-cover",
   },
   {
     title: "Victim’s Advocate",
     href: "/about/victims-advocate",
-    img: "/images/staff/morgan-fritsch.jpg",
-    alt: "Victim’s Advocate Morgan R. Fritsch",
-    fit: "object-cover object-top",
+    img: "/images/kenton-seal.png",
+    alt: "Seal of the Kenton County Commonwealth’s Attorney Office",
+    fit: "object-contain p-10 bg-ice-100",
   },
 ];
 

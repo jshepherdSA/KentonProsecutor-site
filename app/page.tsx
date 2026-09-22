@@ -593,7 +593,7 @@ function HelpNow() {
               You don&rsquo;t have to face this alone
             </h3>
             <p className="mt-4 leading-7 text-body">
-              Our Victim&rsquo;s Advocate, Morgan R. Fritsch, keeps victims
+              Our Victim&rsquo;s Advocate, Stephanie Watson, keeps victims
               updated on their cases, sits with them in court, answers their
               questions, and helps them feel comfortable throughout the judicial
               process.
@@ -611,11 +611,11 @@ function HelpNow() {
                 {site.phone}
               </a>
               <a
-                href="mailto:mfritsch@prosecutors.ky.gov"
+                href="mailto:swatson@prosecutors.ky.gov"
                 className="inline-flex items-center gap-2 hover:underline"
               >
                 <MailIcon className="size-4" aria-hidden="true" />
-                mfritsch@prosecutors.ky.gov
+                swatson@prosecutors.ky.gov
               </a>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">

@@ -175,7 +175,7 @@
     @apply max-h-[28rem] w-auto max-w-full sm:max-w-md;
   }
   .prose-site :where(img.float-right, img.float-left) {
-    @apply my-2 w-full sm:w-[42%];
+    @apply my-2 w-full sm:w-[44%];
   }
   .prose-site :where(img.float-right) {
     @apply sm:float-right sm:ml-8;
@@ -183,13 +183,22 @@
   .prose-site :where(img.float-left) {
     @apply sm:float-left sm:mr-8;
   }
-  /* opt-in wider wrap for photos that carry a section */
-  .prose-site :where(img.wide) {
-    @apply sm:w-[56%];
+  /* a floated figure: caption sits under the photo and matches its width */
+  .prose-site :where(figure.float-left, figure.float-right) {
+    @apply my-2 w-full sm:w-[44%];
   }
-  /* opt-in full-column photo (leads a section) */
-  .prose-site :where(img.full) {
-    @apply w-full sm:max-w-none;
+  .prose-site :where(figure.float-right) {
+    @apply sm:float-right sm:ml-8;
+  }
+  .prose-site :where(figure.float-left) {
+    @apply sm:float-left sm:mr-8;
+  }
+  .prose-site :where(figure img) {
+    @apply w-full max-w-none;
+  }
+  /* logos are marks, not photos - keep them smaller */
+  .prose-site :where(img.logo) {
+    @apply sm:w-[26%];
   }
   .prose-site :where(h2, h3) {
     clear: both;

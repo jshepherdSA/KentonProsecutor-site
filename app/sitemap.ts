@@ -8,6 +8,7 @@ const staticRoutes = [
   "/about",
   "/about/rob-sanders",
   "/about/staff",
+  "/about/detectives",
   "/about/victims-advocate",
   "/services",
   "/resources",

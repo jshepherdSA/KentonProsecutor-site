@@ -8,6 +8,7 @@ Office: Kenton County Administration Building, 1840 Simon Kenton Way, Suite 2300
 - [About the office](https://kentonprosecutor.org/about): Overview and a letter from Rob Sanders
 - [Rob Sanders](https://kentonprosecutor.org/about/rob-sanders): Biography of the Commonwealth's Attorney
 - [Assistant Commonwealth's Attorneys](https://kentonprosecutor.org/about/staff): The office's prosecutors
+- [Commonwealth's Detectives](https://kentonprosecutor.org/about/detectives): Investigators who work the office's felony cases
 - [Victim's Advocate](https://kentonprosecutor.org/about/victims-advocate): Support for victims of crime
 - [What We Do](https://kentonprosecutor.org/services): Statutory duties and services
 

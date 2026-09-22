@@ -54,10 +54,14 @@ export function slugify(text: string) {
 function figurizeImages(html: string) {
   return html.replace(
     /(?<!<p>)<img([^>]*)>\s*<p>([\s\S]{0,240}?)<\/p>/g,
-    (full, attrs: string, caption: string) =>
-      /class="[^"]*float/.test(attrs)
-        ? full
-        : `<figure><img${attrs}><figcaption>${caption}</figcaption></figure>`,
+    (_full, attrs: string, caption: string) => {
+      const float = /class="[^"]*\b(float-left|float-right)\b/.exec(attrs);
+      const imgAttrs = float
+        ? attrs.replace(/\s*\b(float-left|float-right)\b/, "")
+        : attrs;
+      const cls = float ? ` class="${float[1]}"` : "";
+      return `<figure${cls}><img${imgAttrs}><figcaption>${caption}</figcaption></figure>`;
+    },
   );
 }
 
@@ -182,14 +186,11 @@ export type StaffMember = {
   photo?: string;
 };
 
-/** Assistant Commonwealth's Attorneys, in the original site's order. */
+/**
+ * Office roster, per "CAO roster for website" (content/CAO-roster.docx).
+ * Email pattern for every member: (first initial)(last name)@prosecutors.ky.gov
+ */
 export const staff: StaffMember[] = [
-  {
-    slug: "emily-arnzen",
-    name: "Emily J. Arnzen",
-    title: "Assistant Commonwealth’s Attorney",
-    email: "earnzen@prosecutors.ky.gov",
-  },
   {
     slug: "casey-burns",
     name: "Casey P. Burns",
@@ -198,23 +199,35 @@ export const staff: StaffMember[] = [
     photo: "/images/staff/casey-burns.jpg",
   },
   {
-    slug: "laura-callihan",
-    name: "Laura Callihan",
+    slug: "emily-arnzen",
+    name: "Emily J. Arnzen",
     title: "Assistant Commonwealth’s Attorney",
-    photo: "/images/staff/laura-callihan.jpg",
+    email: "earnzen@prosecutors.ky.gov",
   },
   {
     slug: "hunter-eickhoff",
-    name: "Hunter Eickhoff",
+    name: "Hunter M. Eickhoff",
     title: "Assistant Commonwealth’s Attorney",
+    email: "heickhoff@prosecutors.ky.gov",
     photo: "/images/staff/hunter-eickhoff.jpg",
   },
   {
-    slug: "patrick-n-grote",
-    name: "Patrick N. Grote",
+    slug: "corinne-mcdonnell",
+    name: "Corinne W. McDonnell",
     title: "Assistant Commonwealth’s Attorney",
-    email: "pgrote@prosecutors.ky.gov",
-    photo: "/images/staff/patrick-n-grote.jpg",
+    email: "cmcdonnell@prosecutors.ky.gov",
+  },
+  {
+    slug: "ryan-oliver",
+    name: "Ryan A. Oliver",
+    title: "Assistant Commonwealth’s Attorney",
+    email: "roliver@prosecutors.ky.gov",
+  },
+  {
+    slug: "hannah-reese",
+    name: "Hannah L. Reese",
+    title: "Assistant Commonwealth’s Attorney",
+    email: "hreese@prosecutors.ky.gov",
   },
   {
     slug: "taylor-i-roof",
@@ -222,6 +235,12 @@ export const staff: StaffMember[] = [
     title: "Assistant Commonwealth’s Attorney",
     email: "troof@prosecutors.ky.gov",
     photo: "/images/staff/taylor-i-roof.jpg",
+  },
+  {
+    slug: "seth-tieger",
+    name: "Seth S. Tieger",
+    title: "Assistant Commonwealth’s Attorney",
+    email: "stieger@prosecutors.ky.gov",
   },
   {
     slug: "maria-wentz",
@@ -232,10 +251,49 @@ export const staff: StaffMember[] = [
   },
   {
     slug: "mike-westling",
-    name: "Mike Westling",
+    name: "Michael W. Westling",
     title: "Assistant Commonwealth’s Attorney",
+    email: "mwestling@prosecutors.ky.gov",
     photo: "/images/staff/mike-westling.jpg",
   },
+];
+
+/** The office's Commonwealth's Detectives. */
+export const detectives: StaffMember[] = [
+  {
+    slug: "jim-lindeman",
+    name: "Jim Lindeman",
+    title: "Commonwealth’s Detective",
+    email: "jlindeman@prosecutors.ky.gov",
+  },
+  {
+    slug: "andrew-munson",
+    name: "Andrew M. Munson",
+    title: "Commonwealth’s Detective",
+    email: "amunson@prosecutors.ky.gov",
+  },
+];
+
+export const victimAdvocate: StaffMember = {
+  slug: "victims-advocate",
+  name: "Stephanie Watson",
+  title: "Victim’s Advocate",
+  email: "swatson@prosecutors.ky.gov",
+};
+
+export const commonwealthsAttorney: StaffMember = {
+  slug: "rob-sanders",
+  name: "Rob Sanders",
+  title: "Commonwealth’s Attorney",
+  email: "rsanders@prosecutors.ky.gov",
+};
+
+/** Everyone, in the order the contact directory should list them. */
+export const directory: StaffMember[] = [
+  commonwealthsAttorney,
+  ...staff,
+  victimAdvocate,
+  ...detectives,
 ];
 
 /** A staff member has a bio page only if the original site had a real bio. */

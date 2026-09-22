@@ -23,21 +23,30 @@ const facts = [
 export default function RobSandersPage() {
   // The original bio used h6 section titles; promote them to h2 and drop the
   // page-title heading and the trailing "visit the staff directory" line.
-  const html = getPage("rob-sanders")
+  let html = getPage("rob-sanders")
     .html.replace(/^<h2>[\s\S]*?<\/h2>/, "")
     .replace(/<h4><strong>([\s\S]*?)<\/strong><\/h4>/g, "<h2>$1</h2>")
     .replace(/<h3>Visit the[\s\S]*?<\/h3>/, "")
     .replace(/<img src="\/images\/wp\/0324-0988e-2\.jpg"[^>]*>/, "")
-    // the 2016 courtroom photo carries the text better a little larger
+    // the city seal is a logo, not a photo - keep it smaller than the rest
     .replace(
-      /(<img src="\/images\/wp\/B9323387126Z[^"]*"[^>]*class=")([^"]*)(")/,
-      "$1$2 wide$3",
+      /(<img src="\/images\/wp\/Big-City-Seal[^"]*"[^>]*class=")([^"]*)(")/,
+      "$1$2 logo$3",
     )
-    // lead the statewide-leadership section with Rob in the courtroom
+    // open the statewide-leadership section with Rob in the courtroom
     .replace(
       "<h2>Improving the Criminal Justice System in Kentucky and U.S.</h2>",
-      '<figure><img src="/images/rob-in-court.jpg" alt="Rob Sanders holding a handgun as he addresses the courtroom during a trial" width="742" height="475" class="full"><figcaption>Rob Sanders presenting evidence to the jury in Kenton Circuit Court.</figcaption></figure>' +
-        "<h2>Improving the Criminal Justice System in Kentucky and U.S.</h2>",
+      "<h2>Improving the Criminal Justice System in Kentucky and U.S.</h2>" +
+        '<img src="/images/rob-in-court.jpg" alt="Rob Sanders holding a handgun as he addresses the courtroom during a trial" width="742" height="475" class="float-right">' +
+        "<p>Rob Sanders presenting evidence to the jury in Kenton Circuit Court.</p>",
+    );
+
+  // photos that stand alone in the text alternate sides so the page has a rhythm
+  const sides = ["float-left", "float-right"];
+  html = html
+    .split(/(?<!<p>)<img(?![^>]*class=)/)
+    .reduce((acc, part, i) =>
+      i === 0 ? part : `${acc}<img class="${sides[(i - 1) % 2]}"${part}`,
     );
   const toc = headings(html);
 

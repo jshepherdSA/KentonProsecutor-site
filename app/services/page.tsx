@@ -23,6 +23,11 @@ export default function ServicesPage() {
         }
         lead="The services we provide and the duties we are legally required to carry out under state law."
         crumbs={[{ label: "Services" }]}
+        image={{
+          src: "/images/rob-sanders-podium.jpg",
+          alt: "Commonwealth’s Attorney Rob Sanders speaking at a press conference",
+          aspect: "aspect-[4/3]",
+        }}
       />
       <SectionLayout
         section="About"

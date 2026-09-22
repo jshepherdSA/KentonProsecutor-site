@@ -46,6 +46,11 @@ export const nav: NavItem[] = [
         description: "The prosecutors who serve with Rob",
       },
       {
+        label: "Commonwealth's Detectives",
+        href: "/about/detectives",
+        description: "Investigators who work our felony cases",
+      },
+      {
         label: "Victim's Advocate",
         href: "/about/victims-advocate",
         description: "Support for victims through every step",
