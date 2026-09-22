@@ -256,6 +256,7 @@ export const staff: StaffMember[] = [
     photo: "/images/staff/maria-wentz.jpg",
   },
   {
+    // Confirmed: Westling keeps the bio carried over from the previous site.
     slug: "mike-westling",
     name: "Michael W. Westling",
     title: "Assistant Commonwealth’s Attorney",

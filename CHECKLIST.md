@@ -37,3 +37,13 @@ _Status after building all content pages — 2026-09-18. Policy pages and the co
   effective date for the policy templates.
 - **Flag for review:** this is a government office site, so the generic
   accessibility statement template should get human/legal review.
+
+## Content notes
+- **Michael W. Westling** — confirmed: his bio reuses the copy from the previous
+  site, so it needs no rewrite.
+- **Stephanie Watson (Victim's Advocate)** — page describes the role only; the
+  previous advocate's personal bio could not carry over. Awaiting her bio/photo.
+- **Bios still missing** for Eickhoff, McDonnell, Oliver, Reese, Roof and Tieger
+  (no bio on the previous site); their cards do not link to a detail page.
+- **Headshots still missing** for McDonnell, Oliver, Reese, Tieger and Watson.
+  Drop files in `public/images/staff/<slug>.jpg` to wire them up.
