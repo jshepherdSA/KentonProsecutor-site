@@ -189,6 +189,11 @@ export type StaffMember = {
 /**
  * Office roster, per "CAO roster for website" (content/CAO-roster.docx).
  * Email pattern for every member: (first initial)(last name)@prosecutors.ky.gov
+ *
+ * Who's who: the roster decides who appears; identity of a photo comes from
+ * public/images/staff (named for the person) and from that person's bio page
+ * on the original site, which is the authority for which upload is whose.
+ * Media-library filenames are not reliable - "Casey-Burns.jpg" is someone else.
  */
 export const staff: StaffMember[] = [
   {
