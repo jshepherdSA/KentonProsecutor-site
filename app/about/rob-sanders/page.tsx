@@ -33,12 +33,10 @@ export default function RobSandersPage() {
       /(<img src="\/images\/wp\/Big-City-Seal[^"]*"[^>]*class=")([^"]*)(")/,
       "$1$2 logo$3",
     )
-    // open the statewide-leadership section with Rob in the courtroom
+    // lift the courtroom photo out of its paragraph so it can carry a caption
     .replace(
-      "<h2>Improving the Criminal Justice System in Kentucky and U.S.</h2>",
-      "<h2>Improving the Criminal Justice System in Kentucky and U.S.</h2>" +
-        '<img src="/images/rob-in-court.jpg" alt="Rob Sanders holding a handgun as he addresses the courtroom during a trial" width="742" height="475" class="float-right">' +
-        "<p>Rob Sanders presenting evidence to the jury in Kenton Circuit Court.</p>",
+      /<p>(<img src="\/images\/wp\/B9323387126Z[^>]*>)/,
+      "$1<p>Rob Sanders presenting evidence to the jury in Kenton Circuit Court.</p><p>",
     );
 
   // photos that stand alone in the text alternate sides so the page has a rhythm
