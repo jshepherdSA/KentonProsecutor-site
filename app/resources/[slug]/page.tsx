@@ -142,6 +142,7 @@ function Body({ slug, html }: { slug: string; html: string }) {
             ]}
           />
           <DownloadsTable html={html} />
+          <DuiDocuments />
         </>
       );
 
@@ -187,6 +188,62 @@ function Body({ slug, html }: { slug: string; html: string }) {
     default:
       return <Prose html={html} />;
   }
+}
+
+/** DUI paperwork the office provides to officers. */
+const DUI_DOCS = [
+  {
+    title: "DUI Blood Search Warrant",
+    file: "/docs/DUI_Blood_Search_Warrant_2025.pdf",
+    note: "Application and affidavit in support of a search warrant for a blood draw (2025 template).",
+  },
+  {
+    title: "Implied Consent Warning",
+    file: "/docs/DUI_Implied_Consent_Warning_2026-07-15.pdf",
+    note: "Read to the suspect before testing. Effective July 15, 2026.",
+  },
+  {
+    title: "Refusal Language",
+    file: "/docs/DUI_Refusal_Language_2026-07-15.pdf",
+    note: "Read if the suspect refuses the breath test. Effective July 15, 2026.",
+  },
+];
+
+function DuiDocuments() {
+  return (
+    <section aria-labelledby="dui-forms" className="mt-14">
+      <h2 id="dui-forms" className="text-3xl">
+        DUI search warrant &amp; implied consent
+      </h2>
+      <p className="mt-3 leading-7 text-body">
+        Current DUI paperwork for officers, including the implied consent and
+        refusal language effective July 15, 2026.
+      </p>
+      <ul className="mt-6 divide-y divide-line rounded-sm ring-1 ring-line">
+        {DUI_DOCS.map((d) => (
+          <li key={d.file}>
+            <a
+              href={d.file}
+              className="group flex items-start gap-4 p-5 hover:bg-mist-50"
+            >
+              <FileTextIcon
+                className="mt-0.5 size-5 shrink-0 text-steel-500"
+                aria-hidden="true"
+              />
+              <span>
+                <span className="block font-semibold text-navy-700 group-hover:underline">
+                  {d.title} <span className="text-subtle">(PDF)</span>
+                </span>
+                <span className="mt-1 block text-[0.95rem] leading-6 text-body">
+                  {d.note}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 /** The original table used headings inside cells; rebuild it as a clean table. */
