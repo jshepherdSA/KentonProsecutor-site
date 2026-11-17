@@ -32,6 +32,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <Newsletter />
       <Pillars />
       <Stats />
       <WelcomeLetter />
@@ -39,7 +40,6 @@ export default function HomePage() {
       <Recognition />
       <LatestNews />
       <HelpNow />
-      <Newsletter />
     </>
   );
 }
